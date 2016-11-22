@@ -1,0 +1,64 @@
+---
+title       : Developing Data Products
+subtitle    : Week 3 Assignment
+author      : JW
+job         : 11/21/2016
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+github: 
+      user: weinjsuny
+      repo: Developing-Data-Products 
+---
+
+## Introduction
+
+One of interesting question is what economic factors would impact the GDP growth rate.
+We will look at these factors:
+
+- Stocks 
+- Revenue
+- Expenditure
+
+---
+
+## Plot of GDP against Stocks
+
+```{r, echo = FALSE, message = F, warning = F}
+library(gdata)
+library(plotly)
+setwd("/Users/junwen/Documents/Project_Incubator/Data")
+df <- read.xls("JSTdatasetR1.xlsx", sheet = 2, header = TRUE)
+df <- subset(df, iso == "USA")
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+p <- plot_ly(x = df$stocks, y = df$gdp, mode = "markers")
+htmlwidgets::saveWidget(as.widget(p), file = "demo1.html")
+```
+<iframe src="demo1.html" style="position:absolute;height:100%;width:100%"></iframe>
+
+---
+
+## Plot of GDP against Revenue
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+p <- plot_ly(x = df$revenue, y = df$gdp, mode = "markers")
+htmlwidgets::saveWidget(as.widget(p), file = "demo2.html")
+```
+<iframe src="demo2.html" style="position:absolute;height:100%;width:100%"></iframe>
+
+---
+
+## Plot of GDP against Expenditure
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+p <- plot_ly(x = df$expenditure, y = df$gdp, mode = "markers")
+htmlwidgets::saveWidget(as.widget(p), file = "demo3.html")
+```
+<iframe src="demo3.html" style="position:absolute;height:100%;width:100%"></iframe>
+
+---
